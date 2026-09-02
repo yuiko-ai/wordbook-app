@@ -12,8 +12,11 @@
 |--------------|----------------|--------|------|------------|------|
 | ユーザーID | id | BIGSERIAL | PK | - | 自動採番 |
 | ユーザー名 | name | VARCHAR(50) | NOT NULL | - | - |
-| メールアドレス | email | VARCHAR(255) | NOT NULL, UNIQUE | ログインIDとして使用 |
-| パスワード | password | VARCHAR(255) | NOT NULL | - | - |
+| メールアドレス | email | VARCHAR(255) | NOT NULL, UNIQUE | - | ログインIDとして使用 |
+| パスワード | password | VARCHAR(255) | NOT NULL | - | BCrypt等でハッシュ化して保存 |
 | 作成日時 | created_at | TIMESTAMP | NOT NULL | CURRENT_TIMESTAMP | - |
 | 更新日時 | updated_at | TIMESTAMP | NOT NULL | CURRENT_TIMESTAMP | 更新時に自動更新 |
 | 削除日時 | deleted_at | TIMESTAMP | - | 論理削除用 |
+
+# リレーション
+各テーブルに多対1で紐付け
