@@ -19,7 +19,7 @@
 | 重要度 | importance | INT | - | NULL | 1 ~ 5で入力する | 
 | 閲覧回数 | view_count | INT | NOT NULL | 0 | 詳細画面を表示した回数
 | 作成日時 | created_at | TIMESTAMP | NOT NULL | CURRENT_TIMESTAMP | - |
-| 更新日時 | updated_at | TIMESTAMP | NOT NULL | CURRENT_TIMESTAMP | 更新時に自動更新 |
+| 更新日時 | updated_at | TIMESTAMP | - | CURRENT_TIMESTAMP | 更新時に自動更新 |
 
 ## リレーション
 | リレーション種別 | 対象テーブル | 対象カラム | 備考 (条件など) |
