@@ -7,12 +7,9 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -20,42 +17,23 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "words")
+@Table(name = "users")
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
-public class Word {
+@NoArgsConstructor
+
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
-
-    @Column(nullable = false, length = 100)
-    private String term;
-
-    @Column(nullable = false, columnDefinition = "TEXT")
-    private String meaning;
-
-    @Column(nullable = true, columnDefinition = "TEXT")
-    private String example;
-
-    @Column(nullable = true)
-    private String url;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "section_id", nullable = true)
-    private Section section;
-
-    @Column(nullable = true)
-    private Integer importance;
+    @Column(nullable = false, length = 50)
+    private String name;
 
     @Column(nullable = false)
-    private Integer viewCount = 0;
+    private String password;
 
     @CreationTimestamp
     @Column(nullable = false, updatable = false)
@@ -64,4 +42,7 @@ public class Word {
     @UpdateTimestamp
     @Column(nullable = false)
     private LocalDateTime updatedAt;
+
+    @Column(nullable = true)
+    private LocalDateTime deletedAt;
 }
