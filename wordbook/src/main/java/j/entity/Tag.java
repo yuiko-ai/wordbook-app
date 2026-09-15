@@ -20,12 +20,12 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "words")
+@Table(name = "tags")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Word {
+public class Tag {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,27 +35,8 @@ public class Word {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @Column(nullable = false, length = 100)
-    private String term;
-
-    @Column(nullable = false, columnDefinition = "TEXT")
-    private String meaning;
-
-    @Column(nullable = true, columnDefinition = "TEXT")
-    private String example;
-
-    @Column(nullable = true)
-    private String url;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "section_id", nullable = true)
-    private Section section;
-
-    @Column(nullable = true)
-    private Integer importance;
-
-    @Column(nullable = false)
-    private Integer viewCount = 0;
+    @Column(nullable = false, length = 50)
+    private String name;
 
     @CreationTimestamp
     @Column(nullable = false, updatable = false)
@@ -64,4 +45,7 @@ public class Word {
     @UpdateTimestamp
     @Column(nullable = false)
     private LocalDateTime updatedAt;
+
+    @Column(nullable = true)
+    private LocalDateTime deletedAt;
 }
